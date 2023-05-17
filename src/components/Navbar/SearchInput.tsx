@@ -10,8 +10,6 @@ type SearchInputProps = {
   } | null;
 };
 
-
-
 const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
   return (
     <Flex flexGrow={1} mr="6px" ml="3px" maxWidth={user ? "auto" : "600px"}>

@@ -5,6 +5,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
+import RightContent from "./RightContent/RightContent";
 
 const Navbar: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Navbar: React.FC = () => {
       align="center"
       pr={2}
       justify={{ md: "space-between" }}
+      boxShadow='md'
     >
       <Flex
         margin="1rem"
@@ -31,10 +33,11 @@ const Navbar: React.FC = () => {
           display={{ base: "none", md: "unset" }}
           pl="12px"
         >
-          Community
+          Community Project
         </Text>
       </Flex>
       <SearchInput />
+      <RightContent />
     </Flex>
   );
 };
