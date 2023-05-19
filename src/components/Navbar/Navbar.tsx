@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Flex,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
 import RightContent from "./RightContent/RightContent";
 
@@ -15,7 +11,7 @@ const Navbar: React.FC = () => {
       align="center"
       pr={2}
       justify={{ md: "space-between" }}
-      boxShadow='md'
+      boxShadow="md"
     >
       <Flex
         margin="1rem"

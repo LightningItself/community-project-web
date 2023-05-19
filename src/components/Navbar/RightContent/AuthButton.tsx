@@ -6,7 +6,7 @@ import { authModalState } from "../../../atoms/authModalAtom";
 const AuthButton = () => {
   const setAuthModalState = useSetRecoilState(authModalState);
   return (
-    <Flex mr="3px" display={{ base: "none", md: "unset" }}>
+    <Flex display={{ base: "none", md: "unset" }}>
       <Button
         mr="6px"
         variant="outline"
@@ -15,9 +15,9 @@ const AuthButton = () => {
       >
         Sign Up
       </Button>
-      <Button 
-        variant="solid" 
-        colorScheme="brand" 
+      <Button
+        variant="solid"
+        colorScheme="brand"
         onClick={() => setAuthModalState({ open: true, view: "login" })}
       >
         Log In

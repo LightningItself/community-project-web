@@ -8,14 +8,7 @@ export interface User {
   dateJoined: Date | null;
 }
 
-const defaultUserState: User = {
-  name: null,
-  photo: null,
-  joinedCommunities: null,
-  dateJoined: null,
-};
-
-export const userState = atom<User>({
-  key: "authModalState",
-  default: defaultUserState,
+export const userState = atom<User | null>({
+  key: "userState",
+  default: null,
 });
