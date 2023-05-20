@@ -7,6 +7,8 @@ import lightTheme from "./chakra/lightTheme";
 import { CookiesProvider } from "react-cookie";
 
 function App() {
+
+  //create an useEffect to check for token cookie and call login if present.
   return (
     <CookiesProvider>
       <RecoilRoot>

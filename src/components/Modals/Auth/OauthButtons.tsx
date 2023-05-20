@@ -6,6 +6,7 @@ import { User, userState } from "../../../atoms/userAtom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useCookies } from "react-cookie";
 import { authModalState } from "../../../atoms/authModalAtom";
+import useGoogleAuth from "../../../hooks/useGoogleAuth";
 
 interface userProfile {
   id: String;
@@ -24,58 +25,10 @@ const OauthButtons: React.FC = () => {
   const [cookies, setCookies] = useCookies();
   const setModalState = useSetRecoilState(authModalState);
 
+  const [login] = useGoogleAuth();
+
   const handleLogin = () => {
-    googleLogin();
-  };
-
-  const loginUser = () => {
-    //sends the google profile id to server to check for existing accounts.
-    //if present -> logs in
-    //if not found, prompts to create a new account with this google account.
-    //COMPLETE after backend endpoint is done.
-    //currently using dummy user to login.
-    //NOTE: use httpOnly cookie to authorize all subsequent transactions.
-    const dummyUser: User = {
-      name: "Indrayudh Ghosh",
-      photo: "www.dummylink.com",
-      joinedCommunities: [],
-      dateJoined: new Date("2022-02-11"),
-    };
-    const jwt = "fsdfsdafasdfsdaafsfd"; //dummy jwt
-    setCookies("token", jwt);
-    setUser(dummyUser);
-  };
-
-  const extractAccountInfo = (accessToken: String) => {
-    axios
-      .get(
-        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            Accept: "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        setUserProfile(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: (res) => {
-      console.log("AccessTokenExtracted");
-      extractAccountInfo(res.access_token);
-      loginUser();
-      closeModal();
-    },
-    onError: (res) => console.log("Login Failed"),
-  });
-
-  const closeModal = () => {
-    setModalState((prev) => ({ ...prev, open: false }));
+    login();
   };
 
   return (

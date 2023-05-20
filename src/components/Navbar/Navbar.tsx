@@ -2,8 +2,12 @@ import React from "react";
 import { Flex, Image, Text } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
 import RightContent from "./RightContent/RightContent";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atoms/userAtom";
+import Directory from "./Directory/Directory";
 
 const Navbar: React.FC = () => {
+  const [user, setUser] = useRecoilState(userState);
   return (
     <Flex
       bg="white"
@@ -32,8 +36,9 @@ const Navbar: React.FC = () => {
           Community Project
         </Text>
       </Flex>
-      <SearchInput />
-      <RightContent />
+      {user && <Directory />}
+      <SearchInput user={user} />
+      <RightContent user={user}/>
     </Flex>
   );
 };

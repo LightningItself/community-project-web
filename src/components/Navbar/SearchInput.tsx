@@ -1,12 +1,16 @@
 import React from "react";
 import { Flex, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { useRecoilState } from "recoil";
+import { User, userState } from "../../atoms/userAtom";
 
-//add user prop
+type SearchInputProps = {
+  user: User | null;
+};
 
-const SearchInput: React.FC = () => {
+const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
   return (
-    <Flex flexGrow={1} mr="6px" ml="3px" maxWidth={false ? "auto" : "600px"}>
+    <Flex flexGrow={1} mr="6px" ml="3px" maxWidth={user ? "auto" : "600px"}>
       <InputGroup colorScheme="brand">
         <InputLeftElement pointerEvents="none">
           <SearchIcon color="brand.500" />
