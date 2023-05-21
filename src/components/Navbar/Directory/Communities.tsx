@@ -2,6 +2,7 @@
 import { Flex, MenuItem, Icon } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { GrAdd } from "react-icons/gr";
+import CreateCommunityModal from "../../Modals/CreateCommunity/CreateCommunityModal";
 
 type CommunitiesProps = {};
 
@@ -9,7 +10,7 @@ const Communities: React.FC<CommunitiesProps> = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      {/* <CreateCommunityModal open={open} handleClose={() => setOpen(false)} /> */}
+      <CreateCommunityModal open={open} handleClose={() => setOpen(false)} />
       <MenuItem
         width="100%"
         fontSize="10pt"

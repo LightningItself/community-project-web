@@ -16,6 +16,8 @@ const Navbar: React.FC = () => {
       pr={2}
       justify={{ md: "space-between" }}
       boxShadow="md"
+      position="fixed"
+      w="100%"
     >
       <Flex
         margin="1rem"
@@ -38,7 +40,7 @@ const Navbar: React.FC = () => {
       </Flex>
       {user && <Directory />}
       <SearchInput user={user} />
-      <RightContent user={user}/>
+      <RightContent user={user} />
     </Flex>
   );
 };

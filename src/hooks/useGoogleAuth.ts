@@ -52,6 +52,20 @@ const useGoogleAuth = () => {
     onError: (res) => console.log("Login Failed"),
   });
 
+  const checkLogin = () => {
+    const jwt = cookies["token"];
+    if (jwt !== undefined) {
+      try {
+        //send googleAccountId and email to server. receive jwt and user data
+        //currently using dummy values
+        setCookies("token", dummyJwt);
+        setUser(dummyUser);
+      } catch (err) {
+        console.log("failed to auto login");
+      }
+    }
+  };
+
   const logout = () => {
     removeCookies("token");
     setUser(null);
@@ -59,7 +73,7 @@ const useGoogleAuth = () => {
     // do we need to refresh?
   };
 
-  return [login, logout];
+  return [login, logout, checkLogin];
 };
 
 export default useGoogleAuth;
