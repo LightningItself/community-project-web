@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import useGoogleAuth from "../../hooks/useGoogleAuth";
+import { Flex } from "@chakra-ui/react";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -14,7 +15,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <>{children}</>
+      <Flex h="3rem" />
+      {children}
     </>
   );
 };
