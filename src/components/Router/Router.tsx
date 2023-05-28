@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import CommunityPage from "../../routes/Community/CommunityPage";
 import HomePage from "../../routes/Home/HomePage";
-import CommunityPageLoader from "../../routes/Community/CommunityPageLoader";
+import {CommunityPageLoader} from "../../routes/Community/CommunityPage";
 
 const router = createBrowserRouter([
   {

@@ -25,10 +25,10 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
           />
           <Flex padding="18px 16px">
             <Flex direction="column" mr={6}>
-              <Text fontWeight={800} fontSize="16pt">
+              <Text fontWeight={600} fontSize="16pt" fontFamily="Helvetica">
                 {communityData.communityName}
               </Text>
-              <Text fontWeight={600} fontSize="10pt" color="grey.400">
+              <Text fontWeight={600} fontSize="10pt" color="grey" mt="-8px">
                 c/{communityData.communityName}
               </Text>
             </Flex>
