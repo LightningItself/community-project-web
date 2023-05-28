@@ -17,6 +17,7 @@ const Navbar: React.FC = () => {
       justify={{ md: "space-between" }}
       boxShadow="md"
       position="fixed"
+      zIndex={100}
       w="100%"
     >
       <Flex

@@ -25,7 +25,12 @@ const CommunityPage = () => {
       <Header communityData={communityData} />
       <PageContent>
         <div>left menu</div>
-        <Flex>
+        <Flex direction="column">
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
           <Post />
         </Flex>
         <div>right menu</div>
