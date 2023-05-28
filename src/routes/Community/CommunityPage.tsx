@@ -5,6 +5,8 @@ import { LoaderFunction } from "react-router-dom";
 import PageContent from "../../components/Layout/PageContent";
 import { Flex } from "@chakra-ui/react";
 import Post from "../../components/Community/Post";
+import Menu from "../../components/Community/Menu/Menu";
+import MenuItem from "../../components/Community/Menu/MenuItem";
 
 interface LoaderData {
   communityName: String;
@@ -24,7 +26,10 @@ const CommunityPage = () => {
     <>
       <Header communityData={communityData} />
       <PageContent>
-        <div>left menu</div>
+        <Menu>
+          <MenuItem />
+          <MenuItem />
+        </Menu>
         <Flex direction="column">
           <Post />
           <Post />
@@ -33,7 +38,7 @@ const CommunityPage = () => {
           <Post />
           <Post />
         </Flex>
-        <div>right menu</div>
+        <div>right mezfgzdfgfzdgdfgdgfnu</div>
       </PageContent>
     </>
   );

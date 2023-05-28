@@ -8,15 +8,16 @@ type PageContentProps = {
 const PageContent: React.FC<PageContentProps> = ({ children }) => {
   return (
     <Flex justify="center" p="16px 0px" border="1px solid red">
-      <Flex w="95%" justify="center" maxWidth="1290px" border="1px solid green">
+      <Flex w="95%" justify="center" maxWidth="1400px" border="1px solid green">
         <Flex
           direction="column"
           display={{ base: "none", md: "flex" }}
           flexGrow={1}
+          border="1px solid blue"
         >
           {children && children[0 as keyof typeof children]}
         </Flex>
-        <Flex direction="column" w={{ base: "100%", md: "65%" }}>
+        <Flex direction="column" w={{ base: "100%", md: "auto" }}>
           {children && children[1 as keyof typeof children]}
         </Flex>
         <Flex
