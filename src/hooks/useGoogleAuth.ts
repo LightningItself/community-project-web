@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { authModalState } from "../atoms/authModalAtom";
+import { MdLocalGasStation } from "react-icons/md";
 
 const dummyUser: User = {
   name: "Indrayudh Ghosh",
@@ -42,7 +43,8 @@ const useGoogleAuth = () => {
         const googleAccountId = googleApiRes.data.id;
         //send googleAccountId and email to server. receive jwt and user data
         //currently using dummy values
-        setCookies("token", dummyJwt);
+        // setCookies("token", dummyJwt);
+        localStorage.setItem("token", dummyJwt);
         setUser(dummyUser);
         setModalState((prev) => ({ ...prev, open: false }));
       } catch (err) {
@@ -53,12 +55,12 @@ const useGoogleAuth = () => {
   });
 
   const checkLogin = () => {
-    const jwt = cookies["token"];
+    // const jwt = cookies["token"];
+    const jwt = localStorage.getItem("token");
     if (jwt !== undefined) {
       try {
         //send googleAccountId and email to server. receive jwt and user data
         //currently using dummy values
-        setCookies("token", dummyJwt);
         setUser(dummyUser);
       } catch (err) {
         console.log("failed to auto login");
@@ -67,7 +69,8 @@ const useGoogleAuth = () => {
   };
 
   const logout = () => {
-    removeCookies("token");
+    // removeCookies("token");
+    localStorage.removeItem("token");
     setUser(null);
     window.location.reload();
     // do we need to refresh?

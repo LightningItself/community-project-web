@@ -2,13 +2,19 @@ import { Box, Button, Divider, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
+import Comment from "../Comment/Comment";
+import CommentWrapper from "../Comment/CommentWrapper";
+
+type PostProps = {
+  comments: any;
+};
 
 const Post = () => {
   return (
     <Flex justify="center" flex={1}>
       <Box m="5px" flex={1} borderRadius="7px" bg="white">
         <Flex m="5px" direction="row" mr="25px">
-          <Flex w="180px" justify="center" p="10px">
+          <Flex w="120px" justify="center" p="10px">
             <Flex align="center" direction="column">
               <BsArrowUpShort size={26} color="grey" />
               <Text fontSize={11} align="center" color="grey">
@@ -99,6 +105,17 @@ const Post = () => {
                 </Text>
               </Flex>
             </Flex>
+            <CommentWrapper>
+              <Comment />
+
+              <Comment>
+                <Comment />
+                <Comment>
+                  <Comment />
+                  <Comment />
+                </Comment>
+              </Comment>
+            </CommentWrapper>
           </Flex>
         </Flex>
       </Box>

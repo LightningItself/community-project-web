@@ -1,7 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
-const MenuItem = () => {
+type MenuItemProps = {
+  isActive: boolean;
+};
+
+const MenuItem: React.FC<MenuItemProps> = ({ isActive }) => {
   return (
     <Flex
       justify="center"

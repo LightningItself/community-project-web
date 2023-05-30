@@ -27,8 +27,8 @@ const CommunityPage = () => {
       <Header communityData={communityData} />
       <PageContent>
         <Menu>
-          <MenuItem />
-          <MenuItem />
+          <MenuItem isActive={false} />
+          <MenuItem isActive={true} />
         </Menu>
         <Flex direction="column">
           <Post />
