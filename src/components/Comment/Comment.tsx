@@ -1,4 +1,4 @@
-import { Flex, Box, Image, Text } from "@chakra-ui/react";
+import { Flex, Box, Image, Text, Divider } from "@chakra-ui/react";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import React, { useState } from "react";
@@ -26,6 +26,7 @@ const Comment: React.FC<CommentProps> = ({ children }) => {
           </Text>
           <BsArrowDownShort size={20} color="grey" />
         </Flex>
+        {isExpanded && <Divider orientation="vertical" mt="10px" />}
       </Flex>
       <Flex direction="column" flex={1} pl="10px">
         <Flex direction="column">
