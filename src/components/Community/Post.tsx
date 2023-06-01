@@ -4,12 +4,15 @@ import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import Comment from "../Comment/Comment";
 import CommentWrapper from "../Comment/CommentWrapper";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atoms/userAtom";
 
 type PostProps = {
   comments: any;
 };
 
 const Post = () => {
+  const [user] = useRecoilState(userState);
   return (
     <Flex justify="center" flex={1}>
       <Box m="5px" flex={1} borderRadius="7px" bg="white">
@@ -81,7 +84,7 @@ const Post = () => {
             >
               <Flex>
                 <Image
-                  src="/images/logo.png"
+                  src={`${user?.photo}`}
                   boxSize={5}
                   bg="white"
                   color="blue"

@@ -4,13 +4,15 @@ import { useCookies } from "react-cookie";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { authModalState } from "../atoms/authModalAtom";
-import { MdLocalGasStation } from "react-icons/md";
 
 const dummyUser: User = {
-  name: "Indrayudh Ghosh",
-  photo: "www.dummylink.com",
-  joinedCommunities: [],
+  id: "wrfeafreger5t4w645t",
+  fullName: "dummy",
+  batch: 2025,
+  branch: "ECE",
   dateJoined: new Date("2022-02-11"),
+  photo: undefined,
+  contributionScore: 0,
 };
 
 const dummyJwt = "fsdfsdafasdfsdaafsfd";
@@ -39,13 +41,22 @@ const useGoogleAuth = () => {
             },
           }
         );
-        console.log("GoogleApiRes", googleApiRes);
-        const googleAccountId = googleApiRes.data.id;
-        //send googleAccountId and email to server. receive jwt and user data
-        //currently using dummy values
-        // setCookies("token", dummyJwt);
-        localStorage.setItem("token", dummyJwt);
-        setUser(dummyUser);
+
+        const loginRes: any = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          {
+            email: googleApiRes.data.email,
+            googleId: googleApiRes.data.id,
+          }
+        );
+
+        console.log(loginRes.data.user);
+
+        const jwt: string = loginRes?.data?.jwt;
+        localStorage.setItem("token", jwt);
+        localStorage.setItem("userEmail", loginRes.data.user.email);
+        localStorage.setItem("userGoogleId", loginRes.data.user.googleId);
+        setUser(loginRes?.data?.user);
         setModalState((prev) => ({ ...prev, open: false }));
       } catch (err) {
         console.log("Login Failed");
@@ -54,14 +65,21 @@ const useGoogleAuth = () => {
     onError: (res) => console.log("Login Failed"),
   });
 
-  const checkLogin = () => {
-    // const jwt = cookies["token"];
+  const checkLogin = async () => {
     const jwt = localStorage.getItem("token");
-    if (jwt !== undefined) {
+    const userEmail = localStorage.getItem("userEmail");
+    const userGoogleId = localStorage.getItem("userGoogleId");
+    console.log("running checklogin");
+    if (jwt && userEmail && userGoogleId && !user) {
       try {
-        //send googleAccountId and email to server. receive jwt and user data
-        //currently using dummy values
-        setUser(dummyUser);
+        const loginRes: any = await axios.post(
+          "http://localhost:5000/api/auth/login",
+          {
+            email: userEmail,
+            googleId: userGoogleId,
+          }
+        );
+        setUser(loginRes.data.user);
       } catch (err) {
         console.log("failed to auto login");
       }
@@ -69,12 +87,14 @@ const useGoogleAuth = () => {
   };
 
   const logout = () => {
-    // removeCookies("token");
     localStorage.removeItem("token");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userGoogleId");
     setUser(null);
     window.location.reload();
-    // do we need to refresh?
   };
+
+  
 
   return [login, logout, checkLogin];
 };

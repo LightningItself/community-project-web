@@ -68,7 +68,7 @@ const CreateCommunityModal: React.FC<CreateCommunitiesModalProps> = ({
       ) {
         const newCommunity = {
           communityName: communityName,
-          creatorId: user?.name,
+          creatorId: user?.fullName,
           noOfMembers: 1,
         };
         try {

@@ -8,8 +8,8 @@ type CommentWrapperProps = {
 const CommentWrapper: React.FC<CommentWrapperProps> = ({ children }) => {
   return (
     <>
-      {children.map((comment: any) => (
-        <Flex flex={1}>
+      {children.map((comment: any, index: number) => (
+        <Flex flex={1} key={index}>
           <Box
             flex={1}
             bg="#F4F4F8"

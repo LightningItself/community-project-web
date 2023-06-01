@@ -9,6 +9,7 @@ import {
   Flex,
   MenuDivider,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { VscAccount } from "react-icons/vsc";
@@ -18,13 +19,11 @@ import { MdOutlineLogin } from "react-icons/md";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "../../../atoms/authModalAtom";
 import { userState } from "../../../atoms/userAtom";
-import { useCookies } from "react-cookie";
 import useGoogleAuth from "../../../hooks/useGoogleAuth";
 
 const UserMenu: React.FC = () => {
   const setAuthModalState = useSetRecoilState(authModalState);
   const [user, setUser] = useRecoilState(userState);
-  const [cookies, setCookies, removeCookies] = useCookies();
   const [login, logout] = useGoogleAuth();
 
   return (
@@ -41,7 +40,14 @@ const UserMenu: React.FC = () => {
           <Flex align="center">
             {user ? (
               <>
-                <Icon as={IoGrid} fontSize={20} color="gray.700" mr={2} />
+                <Image
+                  src={`${user?.photo}`}
+                  boxSize={6}
+                  bg="white"
+                  color="blue"
+                  borderRadius="50%"
+                  mr="8px"
+                />
                 <Flex
                   direction="column"
                   display={{ base: "none", lg: "flex" }}
@@ -51,10 +57,12 @@ const UserMenu: React.FC = () => {
                 >
                   <Text fontWeight={700}>
                     {/* {user?.name || user.email?.split("@")[0]} */}
-                    {user?.name}
+                    {user?.fullName}
                   </Text>
                   <Flex>
-                    <Text color="gray.500">54 karma</Text>
+                    <Text color="gray.500">
+                      {user?.contributionScore.toString()} points
+                    </Text>
                   </Flex>
                 </Flex>
               </>
@@ -97,7 +105,7 @@ const UserMenu: React.FC = () => {
               fontSize="10pt"
               fontWeight={700}
               _hover={{ bg: "gray.100" }}
-              onClick={() => setAuthModalState({ open: true, view: "login" })}
+              onClick={() => setAuthModalState({ open: true})}
             >
               <Flex align="center">
                 <Icon as={MdOutlineLogin} fontSize="20" mr={2} />

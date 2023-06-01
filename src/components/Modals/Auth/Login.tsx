@@ -11,7 +11,6 @@ const Login: React.FC = () => {
   
   return (
     <>
-      <OauthButtons />
       <Text m={5}>OR</Text>
       <form>
         <Input
