@@ -7,6 +7,7 @@ import { Flex } from "@chakra-ui/react";
 import Post from "../../components/Community/Post";
 import Menu from "../../components/Community/Menu/Menu";
 import MenuItem from "../../components/Community/Menu/MenuItem";
+import { CreatePost } from "../../components/Community/CreatePost";
 
 interface LoaderData {
   communityName: String;
@@ -31,12 +32,13 @@ const CommunityPage = () => {
           <MenuItem isActive={true} />
         </Menu>
         <Flex direction="column">
+          <CreatePost />
           <Post />
           <Post />
           <Post />
           <Post />
           <Post />
-          <Post />
+          <Post /> 
         </Flex>
         <div>right mezfgzdfgfzdgdfgdgfnu</div>
       </PageContent>
