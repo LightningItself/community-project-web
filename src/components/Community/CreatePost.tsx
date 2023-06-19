@@ -10,19 +10,33 @@ import {
     ModalBody,
     ModalCloseButton,useDisclosure
   } from '@chakra-ui/react'
+import { useAsyncFn } from '../../hooks/useAsync'  
+import { createPost } from '../../Services/Post'
+import { Post,postListState } from '../../atoms/postAtom'
+import { useRecoilState } from 'recoil'
+import { PostForm } from './PostForm'
 
 export const CreatePost = () => {
+    const [post, setPost] = useRecoilState<Post[]>(postListState);
     const { isOpen, onOpen, onClose } = useDisclosure();
-
+    const {loading,error,execute: createPostFn}= useAsyncFn<Post>(createPost);
+    
+    const onCreatePost = (description: string) => {
+      return createPostFn({description: description}).then((post)=>{
+        setPost((oldPost)=>[post,...oldPost]);
+      });
+    };
 
   return (
     <Box>
         <Grid templateColumns="repeat(5, 1fr)" gap={6}>
-            <GridItem colSpan={2} >
-             <Avatar name=""/>
+            <GridItem colSpan={1} m={1}>
+             <Avatar size="xs" name=""/>
             </GridItem>
-            <GridItem colSpan={3} >
-            <Button onClick={onOpen}>Create Post</Button>
+            <GridItem colSpan={4} >
+              <Box border={1}>
+              <Button justifyContent="left" onClick={onOpen}>Create Post</Button>
+              </Box>
             </GridItem>
         </Grid>
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -31,12 +45,7 @@ export const CreatePost = () => {
           <ModalHeader>Create a Post</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-          <form >
-            <FormLabel>Post Title</FormLabel>
-            <input type="text" />
-            <Textarea my={2} placeholder="Text(requird)" />
-            <Button type="submit">Post</Button>
-           </form>
+           <PostForm loading={loading} error={error} onSubmit={onCreatePost}/>
           </ModalBody>
         </ModalContent>
       </Modal>
