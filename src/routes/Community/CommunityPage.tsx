@@ -5,9 +5,11 @@ import { LoaderFunction } from "react-router-dom";
 import PageContent from "../../components/Layout/PageContent";
 import { Flex } from "@chakra-ui/react";
 import Post from "../../components/Community/Post";
-import Menu from "../../components/Community/Menu/Menu";
-import MenuItem from "../../components/Community/Menu/MenuItem";
-import { CreatePost } from "../../components/Community/CreatePost";
+import Menu from "../../components/Community/LeftMenu/LeftMenu";
+import MenuItem from "../../components/Community/LeftMenu/MenuItem";
+import { CreatePost } from "../../components/Community/RightMenu/CreatePost";
+import RightMenu from "../../components/Community/RightMenu/RightMenu";
+import CommunityRules from "../../components/Community/RightMenu/CommunityRules";
 
 interface LoaderData {
   communityName: String;
@@ -32,15 +34,17 @@ const CommunityPage = () => {
           <MenuItem isActive={true} />
         </Menu>
         <Flex direction="column">
-          <CreatePost />
           <Post />
           <Post />
           <Post />
           <Post />
           <Post />
-          <Post /> 
+          <Post />
         </Flex>
-        <div>right mezfgzdfgfzdgdfgdgfnu</div>
+        <RightMenu>
+          <CreatePost />
+          <CommunityRules />
+        </RightMenu>
       </PageContent>
     </>
   );
